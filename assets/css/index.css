@@ -1,0 +1,80 @@
+body 
+{
+    margin: 0;
+    font-family: sans-serif;
+    padding: 1%;
+
+}
+div#form
+ {
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    color: #848482;
+    font-size: smaller;
+    border: 2%;
+    padding: 10%;
+}
+form h2 {
+    font-size: small;
+}
+
+div#form div {
+  
+    font-weight: bold;
+    margin: 2%;
+    padding: 1%;
+    text-align: left;
+
+}
+input
+{
+    width: 70%;
+    height: 6.5%;
+    margin: 2%;
+    padding: 1%;
+}
+input[type="submit"] 
+{
+    background: #488AC7;
+    color: white;
+    font-weight: bolder;
+    border-color: white;
+    border-width: thin;
+}
+a {
+    text-decoration: none;
+    color: #659EC7;
+    padding: 1%;
+    margin: 1%;
+}
+   
+p {
+    opacity: 0.8;
+}
+a:hover{
+    color:darkblue;
+}
+i.fa.fa-user
+ {
+    font-size: 120px;
+    opacity: 0.5;
+}
+div#left {
+    display: inline-block;
+    width: 48%;
+}
+div#right {
+    text-align: right;
+    display: inline-block;
+    width: 48%;
+}
+.maindiv {
+    text-align: center;
+    background: #EAEDED ;
+    width: 60%;
+    margin: auto;
+    padding: 2%;
+    margin-top: 10%;
+}

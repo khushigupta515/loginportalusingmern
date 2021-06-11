@@ -1,0 +1,60 @@
+<html>
+ <head>
+     <title>Signin</title>
+     <link rel='stylesheet' href='css/login.css'>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script>
+         function passwordlength()
+         {let x= document.getElementById('pwd').value;
+         if(x.length<5)
+             {
+                document.getElementById('passwordlength').innerHTML = '<i class="fa fa-times" aria-hidden="true">Atleast 5 characters';
+                document.getElementById('passwordlength').style.color = 'red';
+            }
+
+          else
+             {
+                document.getElementById('passwordlength').innerHTML = '<i class="fa fa-check" aria-hidden="true"></i>Atleast 5 characters';
+                document.getElementById('passwordlength').style.color = 'black';
+            }
+         }
+         function check(event){
+             if(document.getElementById('cpwd').value != document.getElementById('pwd').value)
+               {
+                alert('Password and Confirmation password donot match');
+                event.preventDefault();
+                return false;
+               } 
+
+               return true;
+         }
+     </script>
+ </head>
+ <body>
+       <div id="form">
+          <form method="get" action="/formsubmit" onsubmit='check(event)'>
+            
+              <h2>Create Account</h2>
+              
+              <input type="email" name="email" placeholder="Email*"><br>
+              <input type="password" name="pwd" placeholder="Password*" minlength="5" id="pwd" oninput="passwordlength()"><br>
+              <input type="password" name="cpwd" placeholder="Confirm Password*" id="cpwd">
+              <p id="passwordlength"></p>
+              <input type="text" name="fn" placeholder="First Name*"><br>
+              <input type="text" name="ln" placeholder="Last Name*"><br>
+              <p>* Indicates mandatory fields</p>
+              <input type="submit" value="Register"><br>
+              <p><a href="/signin">Back to Sign In</a></p>
+              
+             
+          </form>
+       
+       </div>
+        
+       
+   
+
+
+ </body>
+
+</html>

@@ -1,0 +1,57 @@
+div#form {
+    margin: auto;
+    width: 30%;
+    height: 40%;
+    padding: 5%;
+}
+body 
+{
+    margin: 0;
+    font-family: sans-serif;
+    padding: 1%;
+
+}
+div {
+    font-size: small;
+    opacity: 0.9;
+    padding: 1%;
+    margin: 1%;
+}
+#form h2 {
+    font-size: small;
+    opacity: 0.9;
+    text-align: center;
+}
+#form input {
+    width: 95%;
+    height: 35px;
+    padding: 1%;
+    margin: 3%;
+}
+i.fa.fa-user {
+    font-size: 150px;
+    color: #EAEDED;
+    margin: 1%;
+}
+
+input[type="submit"] 
+{
+    color: white;
+    background: #5499C7;
+    border: none;
+    
+}
+a {
+    text-decoration: none;
+    margin: 5%;
+    
+    font-weight: bolder;
+    color: #1F618D;
+}
+p {
+    text-align: center;
+}
+#userfontawesome
+{
+    text-align: center;
+}
