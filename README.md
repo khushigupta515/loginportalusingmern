@@ -1,2 +1,2 @@
 # loginportalusingmern
-Logi portal using MERN Stack
+Login portal using MERN Stack
