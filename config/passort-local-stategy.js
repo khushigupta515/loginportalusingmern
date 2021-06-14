@@ -11,14 +11,18 @@ passport.use(new LocalStrategy({
         usernameField: 'email'
     },
     function(email, password, done){
+        console.log('Entered authentication using pASSPORT');
+        console.log(email);
+        console.log(password);
         // find a user 
         Collection.findOne({email: email}, function(err, user)  {
+            
             if (err){
                 console.log('Error in finding user --> Passport');
                 return done(err);
             }
             // no user or password doesnot match
-            if (!user || user.password != password){
+            if (!user || user.pswd != password){
                 console.log('Invalid Username/Password');
                 return done(null, false);
             }
@@ -41,16 +45,38 @@ console.log('deserializer using passport');
 //(id is there find user)
 // deserializing the user from the key in the cookies
 passport.deserializeUser(function(id, done){
+    console.log('deserializer using passport successful');
     Collection.findById(id, function(err, user){
         if(err){
             console.log('Error in finding user --> Passport');
             return done(err);
         }
-        console.log('deserializer using passport successful');
+        
         return done(null, user);
     });
 });
 
+//check if user is authenticattd
+passport.checkAuthentication = function(req,res,next){//middleware
+    //to detect if user is signed in or not,inbuilt in passport library
+    if(req.isAuthenticated()){
+        //let the user view the page,call controller
+        return next();
+    }
+    //if not authenticated then back to signin
+    return res.redirect('/signin');
 
+}
+passport.setAuthentication = function(req,res,next){//middleware
+    
+    if(req.isAuthenticated()){
+        //request.user contains current signed i  user from session cookie,sending this to locals for views
+        res.locals.user = req.user;
+        
+    }
+    next();
+
+
+}
 
 module.exports = passport;

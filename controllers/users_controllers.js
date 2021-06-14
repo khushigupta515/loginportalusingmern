@@ -9,7 +9,13 @@ module.exports.home = function(req,res)
 }
 
 module.exports.afterSignIn = function(req,res)
-{//check if email and password match in the database
+{   console.log('Enter controller afterSignIn');
+    
+    return res.redirect('/profile');
+
+    //check if email and password match in the database
+   
+    /*
     Collection.findOne({email:req.query.email},function(err,data){
        if(err){console.log('Search for username failed in sign in');return;}
        
@@ -20,15 +26,17 @@ module.exports.afterSignIn = function(req,res)
             {console.log('Incorrect password');return res.redirect('back');}
            //correct password
            console.log('correct password');
-           return res.redirect('/profile');
-           /*
-           res.cookie('user_id',data.id);
+           res.cookie('user_id',25);
            console.log('cookie created ');
-           */
+
+           return res.render('dashboard');
+          
         }
        //user not found
        else{console.log('User doesnot exist');return res.redirect('back');}
    });
+   */
+   
 
 }
 //adding to database
@@ -78,7 +86,13 @@ module.exports.authenticationForSignUp = function(req,res,next)
 
 //profile page
 module.exports.profilesessionstarts = function(req,res)
-{ /*
+{         console.log('Enter controller profilesessionstarts');
+          console.log(req.cookies);
+          res.cookie('user_id',25);
+           console.log('cookie created ');
+
+           return res.render('dashboard');
+           /*
     if(req.cookies.user_id)
     {
         Logindetails.findById(req.cookies.user_id,function(err,data){
@@ -94,7 +108,7 @@ module.exports.profilesessionstarts = function(req,res)
         return res.redirect('/');
     }*/
     console.log('reached session start');
-    return res.render('dashboard') ;
+   // return res.render('dashboard') ;
     
 
 }
@@ -102,8 +116,10 @@ module.exports.profilesessionstarts = function(req,res)
 //session ends-signout
 module.exports.signout = function(req,res){
   
-    /*res.clearCookie('user_id');
-    console.log('cookie cleared');*/
+    res.clearCookie('user_id');
+    res.clearCookie('cookie');
+    req.logOut();
+    console.log('cookie cleared and session destroyed');
     return res.redirect('/');
 }
 
