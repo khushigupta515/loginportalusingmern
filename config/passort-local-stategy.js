@@ -70,7 +70,7 @@ passport.checkAuthentication = function(req,res,next){//middleware
 passport.setAuthentication = function(req,res,next){//middleware
     
     if(req.isAuthenticated()){
-        //request.user contains current signed i  user from session cookie,sending this to locals for views
+        //request.user contains current signed in user from session cookie,sending this to locals for views
         res.locals.user = req.user;
         
     }

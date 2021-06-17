@@ -2,12 +2,66 @@
     <html>
      <head>
          <title>DashBoard</title>
+         <link rel='stylesheet' href='css/login.css'>
+         
          
      </head>
      <body>
-         <h1>Dashboard</h1>
+         <div >
+        <nav>
+            <div id="left">
+                Dashboard
+            </div>
+            <div  id="right">
+                <a href="">Home</a>
+                <a href="/signout">Logout</a>
+            </div>
+            
+           
+        </nav>
+        
          
-         <p>Hello <%=user.fn%> </p>
-         <a href='/signout'>Sign Out</a>
+         <p style="text-align: center;">Hello <%=user.fn%>,Welcome to your Dashboard </p>
+        <div id="form" style="height:fit-content" >
+            <form id="formforposts" method="get" action="/addingtopostscollection" style="border: 2px solid indianred;text-align: center;">
+                <h4>Enter Content</h4>
+                 <textarea name="content" rows="10" cols="30" ></textarea><br>
+                <input type="submit" value="Add Post"><br>
+                
+            </form>
+    </div>
+    <div id="forDisplayingAllPosts">
+        <% if(posts){for (let post of posts){ %>  
+           
+                
+                    <div class="post">
+                        <%= post.content%> 
+                        <p style="text-align: left;font-weight: lighter;">Created By: <%= post.user.fn%> <%= post.user.ln%>  </p>
+                           <div class="comments" style="font-size: x-small;">
+                            <h3>Comments:</h3>
+                            <%if(post.comments){for (let i of post.comments){%> 
+                             <div style="text-align: left;font-weight: lighter;padding:0%;">
+                             <%=i.comment%>
+                             </div>
+                                <%}}%>
+                           </div>
+                           
+                        <form id="formforcommenting" method="get" action="/addcommenttopost">
+                            <input type="hidden" name="postid" value="<%=post.id %>">
+                             <input type="text" name="comment" ><br>
+                             <input type="submit" value="Add Comment"><br>
+                            
+                        </form>
+                        
+                       </div>
+                 
+                  
+                
+            
+          
+        <% } }%>
+
+    </div>
+    </div>       
     </body>
      </html>

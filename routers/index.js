@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const user_Controller = require('../controllers/users_controllers');
+const post_Controller = require('../controllers/posts_controllers');
+const comment_controller = require('../controllers/comments_controllers');
 const passport = require('passport');
 
 //home page
@@ -31,6 +33,12 @@ router.get('/formsubmit',user_Controller.afterSignUp);
 router.get('/profile', passport.checkAuthentication ,user_Controller.profilesessionstarts);
 //signout
 router.get('/signout',user_Controller.signout);
+
+
+
+router.get('/addingtopostscollection',post_Controller.postsinfo);
+router.get('/addcommenttopost',comment_controller.addingcommenttodatabase);
+router.get('/updateposts',comment_controller.updatingpostsonaddingcomment);
 
 module.exports = router;
 

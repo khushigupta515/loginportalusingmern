@@ -1,4 +1,5 @@
-const Collection = require('../models/Logindetails');
+const user = require('../models/Logindetails');
+const posts = require('../models/posts');
 
 
 module.exports.home = function(req,res)
@@ -43,7 +44,7 @@ module.exports.afterSignIn = function(req,res)
 module.exports.afterSignUp = function(req,res)
 {
     console.log(req.query);
-    Collection.create({
+    user.create({
         email: req.query.email,
         pswd: req.query.pwd,
         fn : req.query.fn,
@@ -65,7 +66,7 @@ module.exports.afterSignUp = function(req,res)
 //check if email id is unique or not
 module.exports.authenticationForSignUp = function(req,res,next)
 {
-    Collection.findOne({ email:req.query.email},function(err,data)
+    user.findOne({ email:req.query.email},function(err,data)
     {
         if(err){console.log("Query to check if email id is unique  or not failed");return;}
         
@@ -90,8 +91,18 @@ module.exports.profilesessionstarts = function(req,res)
           console.log(req.cookies);
           res.cookie('user_id',25);
            console.log('cookie created ');
+           posts.find({}).populate('user').populate('comments').exec(function(err,post){
+                    if(err)console.log(err);
+                    else console.log("Fetched from posts collection");
+                    if(post)
+                            return res.render('dashboard',{posts:post});
+                       
+                   });
+        
+       
+}        
 
-           return res.render('dashboard');
+           
            /*
     if(req.cookies.user_id)
     {
@@ -107,11 +118,10 @@ module.exports.profilesessionstarts = function(req,res)
         console.log('cannot enter profile without signing in');
         return res.redirect('/');
     }*/
-    console.log('reached session start');
+    // console.log('reached session start');
    // return res.render('dashboard') ;
-    
 
-}
+
 
 //session ends-signout
 module.exports.signout = function(req,res){
