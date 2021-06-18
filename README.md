@@ -1,2 +1,2 @@
-# loginportalusingmern
-Login portal using MERN Stack
+# Social Media website using MERN
+
