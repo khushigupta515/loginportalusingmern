@@ -21,10 +21,3 @@ module.exports.addingcommenttodatabase = function(req,res){
     
 
 }
-module.exports.updatingpostsonaddingcomment = function(req,res){
-    console.log('Entered updating');
-    collectionPosts.findOne({_id:req.query.postid},function(err,docs){
-
-    });
-
-}

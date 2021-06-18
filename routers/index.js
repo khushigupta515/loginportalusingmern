@@ -36,9 +36,9 @@ router.get('/signout',user_Controller.signout);
 
 
 
-router.get('/addingtopostscollection',post_Controller.postsinfo);
-router.get('/addcommenttopost',comment_controller.addingcommenttodatabase);
-router.get('/updateposts',comment_controller.updatingpostsonaddingcomment);
+router.get('/addingtopostscollection',passport.checkAuthentication ,post_Controller.postsinfo);
+router.get('/addcommenttopost',passport.checkAuthentication ,comment_controller.addingcommenttodatabase);
+
 
 module.exports = router;
 

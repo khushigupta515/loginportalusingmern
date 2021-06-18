@@ -23,12 +23,14 @@
          
          <p style="text-align: center;">Hello <%=user.fn%>,Welcome to your Dashboard </p>
         <div id="form" style="height:fit-content" >
+            <%if(locals.user){%>
             <form id="formforposts" method="get" action="/addingtopostscollection" style="border: 2px solid indianred;text-align: center;">
                 <h4>Enter Content</h4>
                  <textarea name="content" rows="10" cols="30" ></textarea><br>
                 <input type="submit" value="Add Post"><br>
                 
             </form>
+            <%}%>
     </div>
     <div id="forDisplayingAllPosts">
         <% if(posts){for (let post of posts){ %>  
@@ -45,13 +47,14 @@
                              </div>
                                 <%}}%>
                            </div>
-                           
+                         <%if(locals.user){%>  
                         <form id="formforcommenting" method="get" action="/addcommenttopost">
                             <input type="hidden" name="postid" value="<%=post.id %>">
                              <input type="text" name="comment" ><br>
                              <input type="submit" value="Add Comment"><br>
                             
                         </form>
+                        <%}%>
                         
                        </div>
                  
