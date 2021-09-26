@@ -21,3 +21,21 @@ module.exports.addingcommenttodatabase = function(req,res){
     
 
 }
+
+module.exports.deletingcommentfromdatabase= function(req,res){
+
+collectionComments.findByIdAndDelete(req.query.comment_id_to_be_deleted,function(err,docs){
+    if(err)console.log("error in removing comment",err);
+    console.log('comment Deleted from commentscollection');
+    console.log(docs);
+    collectionPosts.findByIdAndUpdate(docs.forpost,{$pull:{comments:docs._id}},function(err,commentid){
+        if(err)console.log("error in finding post of the comment to be deleted",err);
+        console.log('comment Deleted from postscollection');
+        return res.redirect('back');
+    });
+    
+});
+
+
+
+}

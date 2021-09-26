@@ -33,11 +33,10 @@ router.get('/formsubmit',user_Controller.afterSignUp);
 router.get('/profile', passport.checkAuthentication ,user_Controller.profilesessionstarts);
 //signout
 router.get('/signout',user_Controller.signout);
-
-
-
 router.get('/addingtopostscollection',passport.checkAuthentication ,post_Controller.postsinfo);
 router.get('/addcommenttopost',passport.checkAuthentication ,comment_controller.addingcommenttodatabase);
+router.get('/deletingcomment',passport.checkAuthentication ,comment_controller.deletingcommentfromdatabase);
+router.get('/deletingpost',passport.checkAuthentication ,post_Controller.deletingpostfromdatabase);
 
 
 module.exports = router;

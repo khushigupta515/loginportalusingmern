@@ -1,70 +1,51 @@
 
-    <html>
+<html>
      <head>
          <title>DashBoard</title>
          <link rel='stylesheet' href='css/login.css'>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
          
          
      </head>
      <body>
          <div >
-        <nav>
-            <div id="left">
-                Dashboard
-            </div>
-            <div  id="right">
-                <a href="">Home</a>
-                <a href="/signout">Logout</a>
-            </div>
-            
-           
-        </nav>
+            <nav>
+                    <div id="left">
+                        Dashboard
+                    </div>
+                    <div  id="right">
+                        <a href="">Home</a>
+                        <a href="/signout">Logout</a>
+                        <div id="navbar_friends">
+                         <button id="changedisplayonhover" style="display: inline-flex;" >Friends  <i class="fa fa-caret-down" ></i></button><br></button>
+                          <div id="friends">
+                            <%if(users){%>
+                               <% for (let i of users){%>
+                                <a><%=i.fn%></a>
+
+                           <%}   } %>
+                           </div>
+                        </div>   
+                    </div>
+            </nav>
         
          
-         <p style="text-align: center;">Hello <%=user.fn%>,Welcome to your Dashboard </p>
-        <div id="form" style="height:fit-content" >
-            <%if(locals.user){%>
-            <form id="formforposts" method="get" action="/addingtopostscollection" style="border: 2px solid indianred;text-align: center;">
-                <h4>Enter Content</h4>
-                 <textarea name="content" rows="10" cols="30" ></textarea><br>
-                <input type="submit" value="Add Post"><br>
-                
-            </form>
-            <%}%>
-    </div>
-    <div id="forDisplayingAllPosts">
-        <% if(posts){for (let post of posts){ %>  
-           
-                
-                    <div class="post">
-                        <%= post.content%> 
-                        <p style="text-align: left;font-weight: lighter;">Created By: <%= post.user.fn%> <%= post.user.ln%>  </p>
-                           <div class="comments" style="font-size: x-small;">
-                            <h3>Comments:</h3>
-                            <%if(post.comments){for (let i of post.comments){%> 
-                             <div style="text-align: left;font-weight: lighter;padding:0%;">
-                             <%=i.comment%>
-                             </div>
-                                <%}}%>
-                           </div>
-                         <%if(locals.user){%>  
-                        <form id="formforcommenting" method="get" action="/addcommenttopost">
-                            <input type="hidden" name="postid" value="<%=post.id %>">
-                             <input type="text" name="comment" ><br>
-                             <input type="submit" value="Add Comment"><br>
-                            
-                        </form>
-                        <%}%>
-                        
-                       </div>
-                 
-                  
-                
-            
-          
-        <% } }%>
+            <p style="text-align: center;">Hello <%=user.fn%>,Welcome to your Dashboard </p>
+            <div id="form" style="height:fit-content" >
+                <%if(locals.user){%>
+                <form id="formforposts" method="get" action="/addingtopostscollection" style="border: 2px solid indianred;text-align: center;">
+                    <h4>Enter Content</h4>
+                    <textarea name="content" rows="10" cols="30" required ></textarea><br>
+                    <input type="submit" value="Add Post"><br>
+                    
+                </form>
+                <%}%>
+            </div>
 
-    </div>
-    </div>       
+            <%/* partials: To split code into smaller fragments */%>
+            <div id="forDisplayingAllPosts">
+                <%- include('_printingposts') %>
+            </div>
+        </div>       
     </body>
-     </html>
+</html>

@@ -90,14 +90,23 @@ module.exports.profilesessionstarts = function(req,res)
 {         console.log('Enter controller profilesessionstarts');
           console.log(req.cookies);
           res.cookie('user_id',25);
-           console.log('cookie created ');
-           posts.find({}).populate('user').populate('comments').exec(function(err,post){
+          console.log('cookie created ');
+          posts.find({}).populate('user').populate({path:'comments',populate:{path:'byuser'}}).exec(function(err,post){
                     if(err)console.log(err);
                     else console.log("Fetched from posts collection");
-                    if(post)
+
+                    user.find({},function(err,users){
+                        if(err)console.log('Couldnot fetch users to send to index.ejs');
+                        else{console.log('fetched users to send to index.ejs');
+                            if(post)
+                            return res.render('dashboard',{posts:post,users:users});
                             return res.render('dashboard',{posts:post});
                        
-                   });
+                           }
+                        });
+                        
+                    });
+                    
         
        
 }        
